@@ -20,14 +20,17 @@ class Article(models.Model):
 		# Auto create slug if none is given
 		# if self.slug is None:
 		# 	self.slug = slugify(self.title)
+				# slugify_instance_title(self,save=False)
 		super().save(*args,**kwargs)
 
+# Autogenerate new slug
 def slugify_instance_title(instance,save=False,new_slug=None):
 	if new_slug is not None:
 		slug = new_slug
 	else:
 		slug = slugify(instance.title)
-	qs = Article.objects.filter(slug=slug).exclude(id=instance.id )
+	Klass = instance.__class__
+	qs = Klass.objects.filter(slug=slug).exclude(id=instance.id )
 	if qs.exists():
 		rand_int = random.randint(300_00,500_000)
 		slug = F'{slug}-{rand_int}'
