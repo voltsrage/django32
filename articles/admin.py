@@ -5,7 +5,7 @@ from .models import Article
 
 # Setting for admin display for article
 class ArticleAdmin(admin.ModelAdmin):
-	list_display = ['id','title','content'] # List will display id, title and content
+	list_display = ['id','title','content','timestamp','updated'] # List will display id, title and content
 	search_fields = ['title','content'] # list can be searched by title and content
 
 admin.site.register(Article,ArticleAdmin)
