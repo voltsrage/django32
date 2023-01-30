@@ -5,3 +5,5 @@
 data.db
 *.pyc
 .DS_Store
+
+staticfiles-cdn/

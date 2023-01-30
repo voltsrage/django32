@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<h1>My Recipes </h1>
+<div>
+    <a href="{% url 'recipes:create'%}" type='submit' class='btn btn-small btn-outline-secondary' style='margin-bottom: 10px;'>Add Recipe</a>
+</div>
+<ul>{% for x in object_list%} {% if x.name %}
+    <!-- <li><a href="{% url 'article-detail' id=x.id %}"> {{x.title}} - {{x.content}}</a></li> -->
+    <li><a href="{{x.get_absolute_url}}"> {{x.name}}</a></li>
+    {% endif %} {% endfor %}
+</ul>
+{%endblock content%}

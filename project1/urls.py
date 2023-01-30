@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
 from .views import home_view
 from articles.views import (
 	article_search_view,
 	article_create_view,
 	article_detail_view,
+	article_detail_slug_view,
 )
 
 from accounts.views import (
@@ -29,8 +30,11 @@ from accounts.views import (
 	register_view,
 )
 
+from search.views import search_view
+
 urlpatterns = [
 	path('',home_view),
+	path('pantry/recipes/',include('recipes.urls')),
 	# create part for article resources search
 
 	# """Accounts"""
@@ -41,9 +45,14 @@ urlpatterns = [
 	#"""Articles"""
 	path('articles/',article_search_view),
 		# create part for article resources creation
-	path('articles/create/',article_create_view),
+	path('articles/create/',article_create_view,name='article-create'),
 	# create part for retrieving article resources with integer id
-	path('articles/<int:id>/',article_detail_view),
+	path('articles/<int:id>/',article_detail_view,name='article-detail'),
+
+	path('articles/<slug:slug>/',article_detail_slug_view,name='article-slug-detail'),
+
+	#"""Search"""
+	path('search/',search_view, name='search'),
 
 	path('admin/', admin.site.urls),
 ]

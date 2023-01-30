@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% block content %} {% if object %}
-<h1>{{object.title}} (id: {{object.id}})!</h1>
-<p>{{object.content}}</p>
-{% endif %} {%endblock content%}
+{% extends "base.html" %} {% block content %}
+<ol> {% for object in object_list %} {% if object.title %}
+    <li>
+        <a href="{{object.get_slug_absoluter_url}}">{{object.title}}</a>
+    </li>
+    <!-- <h1> (id: {{object.id}})!</h1>
+    <p>{{object.content}}</p> -->
+    {% endif %} {% endfor %}
+</ol>{%endblock content%}

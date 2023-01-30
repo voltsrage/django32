@@ -3,3 +3,8 @@ dataclasses
 django-dotenv
 gunicorn
 psycopg2-binary
+pint
+django-htmx
+django-storages
+boto3
+pillow

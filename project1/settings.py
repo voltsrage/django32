@@ -43,8 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+		'django_htmx',
+		'storages',
 		'articles',
-		'accounts',
+		'accounts',		
+		'recipes',
+		'search',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+		'django_htmx.middleware.HtmxMiddleware'
 ]
 
 ROOT_URLCONF = 'project1.urls'
@@ -154,6 +159,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+	BASE_DIR / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn"
+MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
+
+# from .cdn.conf import * # noqa
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

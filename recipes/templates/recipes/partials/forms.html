@@ -1,0 +1,31 @@
+<div id='recipe-container'>
+    <form action="." method='POST' hx-post='.' hx-swap='outerHTML'>
+        <!-- To add auto save add hx-trigger='change delay=500ms' -->
+        <!-- To add auto save and submit add hx-trigger='change delay=500ms, submit' -->
+        {% csrf_token %} {{form.as_p}}
+        <!-- {%if formset%}
+    <h3>Ingredients</h3>
+    {{formset.management_form}}
+    <div id="ingredient-form-list">
+        {%for form in formset %}
+        <div class='ingredient-form'>
+            {{form.as_p}}
+        </div>
+        {%endfor%}
+    </div>
+
+
+    <div id="empty-form" class='hidden'><span></span> {{formset.empty_form.as_p}} </div>
+
+    {%endif%} -->
+        <div style='margin-top: 5px;'>
+            <!-- <button id="add-more" type='button' class='btn btn-secondary'>Add more</button> -->
+            <div class='htmx-indicator'>Loading...</div>
+            <button type="submit" class='btn btn-sm btn-success htmx-inverted-indicator'>Save</button>
+            <a href="{{ object.get_delete_url }}" class='btn btn-sm btn-danger' hx-post='{{ object.get_delete_url }}' hx-confirm='Are you sure you want to delete {{object.name}}?' hx-trigger='click'>Delete</a>
+        </div>
+        {% if message %}
+        <p>{{message}}</p>
+        {% endif %}
+    </form>
+</div>

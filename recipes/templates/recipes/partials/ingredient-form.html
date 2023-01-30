@@ -1,0 +1,12 @@
+<div class="card" style='margin-bottom: 10px;'>
+    <div class="card-body">
+        <form action="." method='POST' hx-post='{% if url %} {{url}} {% else %} . {% endif %}' hx-swap='outerHTML'>
+            {% csrf_token %} {{form.as_p}}
+            <div style='margin-top: 5px;'>
+                <!-- <button id="add-more" type='button' class='btn btn-secondary'>Add more</button> -->
+                <div class='htmx-indicator'>Loading...</div>
+                <button type="submit" class='btn btn-sm btn-success htmx-inverted-indicator' style='margin-bottom:10px'>Save</button>
+            </div>
+        </form>
+    </div>
+</div>
